@@ -1,4 +1,4 @@
-package com.kay;
+package com.kay.ds;
 
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -14,7 +14,7 @@ import java.util.Map;
  * <p>
  * 3. get/put for existed key, the frequency of the key will increase 1.
  */
-public class LFU {
+public class LFUCache {
 
     private int capacity;
     // key -value
@@ -26,7 +26,7 @@ public class LFU {
 
     private Integer minFreq;
 
-    public LFU(int capacity) {
+    public LFUCache(int capacity) {
         if (capacity <= 0) {
             throw new IllegalArgumentException("capacity should be large than 0.");
         }
@@ -103,7 +103,7 @@ public class LFU {
 
 
     public static void main(String[] args) {
-        LFU lfuCache = new LFU(2);
+        LFUCache lfuCache = new LFUCache(2);
         lfuCache.put("k1", "v1");
         lfuCache.put("k2", "v2");
 
