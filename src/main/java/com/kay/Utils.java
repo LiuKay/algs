@@ -1,5 +1,7 @@
 package com.kay;
 
+import java.util.Random;
+
 public class Utils {
 
     public static ListNode newList(int... arr) {
@@ -69,5 +71,19 @@ public class Utils {
         if(v ==w)
             return false;
         return v.compareTo(w) < 0;
+    }
+
+    public static int[] random(int n){
+        final int bound = 1000;
+        if (n > bound) {
+            throw new IllegalArgumentException(String.format("n should be less than bound %s", bound));
+        }
+        Random random = new Random();
+        //初始化数组，随机值
+        int[] arr = new int[n];
+        for (int i = 0; i <n ; i++) {
+            arr[i] = random.nextInt(bound);
+        }
+        return arr;
     }
 }
