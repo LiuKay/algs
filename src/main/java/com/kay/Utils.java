@@ -1,8 +1,16 @@
 package com.kay;
 
+import com.kay.tree.TreeVisitor;
+
 import java.util.Random;
 
-public class Utils {
+public final class Utils {
+
+    private Utils() {}
+
+    public static final String SEP = ",";
+
+    public static final String NULL_NODE = "#";
 
     public static ListNode newList(int... arr) {
         if (arr == null || arr.length == 0) {
@@ -85,5 +93,17 @@ public class Utils {
             arr[i] = random.nextInt(bound);
         }
         return arr;
+    }
+
+    public static void preOrderPrint(TreeNode treeNode) {
+        StringBuilder stringBuilder = new StringBuilder();
+        TreeVisitor.preOrderTraverse(treeNode, node -> {
+            if (node == null) {
+                stringBuilder.append(NULL_NODE).append(SEP);
+            }else {
+                stringBuilder.append(node.val).append(SEP);
+            }
+        });
+        System.out.println(stringBuilder);
     }
 }

@@ -2,6 +2,7 @@ package com.kay.ds;
 
 import com.kay.TreeNode;
 import com.kay.Utils;
+import com.kay.tree.TreeVisitor;
 
 public class BST {
 
@@ -14,6 +15,8 @@ public class BST {
         }
 
         assert isValidBST(root);
+
+       Utils.preOrderPrint(root);
 
 //        Utils.printArray(nums);
 
