@@ -25,8 +25,16 @@ public class BST {
         assert isValidBST(node);
     }
 
+    public static TreeNode numsToBST(int[] nums) {
+        TreeNode root = null;
+        for (int num : nums) {
+            root = insertBST(root, num);
+        }
+        return root;
+    }
+
     //left <= root <= right
-    static boolean isValidBST(TreeNode root) {
+    public static boolean isValidBST(TreeNode root) {
         return isValidBST(root, null, null);
     }
 
@@ -44,24 +52,22 @@ public class BST {
     }
 
     //insert a value into BST
-    static TreeNode insertBST(TreeNode root, int target) {
+    public static TreeNode insertBST(TreeNode root, int target) {
         if (root == null) {
             return new TreeNode(target);
         }
 
         if (root.val == target) {
             return root;
-        }
-        if (root.val < target) {
+        } else if (root.val < target) {
             root.right = insertBST(root.right, target);
-        }
-        if (root.val > target) {
+        } else {
             root.left = insertBST(root.left, target);
         }
         return root;
     }
 
-    static TreeNode remove(TreeNode root, int target) {
+    public static TreeNode remove(TreeNode root, int target) {
         if (root == null) {
             return null;
         }
@@ -76,17 +82,15 @@ public class BST {
             TreeNode min = getMin(root.right);
             root.val = min.val;
             root.right = remove(root.right, min.val);
-        }
-        if (root.val < target) {
+        } else if (root.val < target) {
             root.right = remove(root.right, target);
-        }
-        if (root.val > target) {
+        } else {
             root.left = remove(root.left, target);
         }
         return root;
     }
 
-    private static TreeNode getMin(TreeNode node) {
+    public static TreeNode getMin(TreeNode node) {
         while (node.left != null) {
             node = node.left;
         }

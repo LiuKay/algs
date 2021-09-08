@@ -44,6 +44,7 @@ public final class Utils {
         for (int i : arr) {
             System.out.print(i + ",");
         }
+        System.out.println();
     }
 
     public static void swap(int[] nums, int from, int to) {
@@ -105,5 +106,20 @@ public final class Utils {
             }
         });
         System.out.println(stringBuilder);
+    }
+
+    public static boolean isSame(TreeNode node,TreeNode other) {
+        if (node == null && other == null) {
+            return true;
+        }
+        if (node == null || other == null) {
+            return false;
+        }
+
+        if (node.val != other.val) {
+            return false;
+        }
+
+        return isSame(node.left, other.left) && isSame(node.right, other.right);
     }
 }
