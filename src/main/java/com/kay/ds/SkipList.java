@@ -2,20 +2,27 @@ package com.kay.ds;
 
 import java.util.Random;
 
+/**
+ * Store int value for learning.
+ *
+ * reference: https://www.geeksforgeeks.org/skip-list-set-2-insertion/?ref=lbp
+ *
+ * insert/delete time cost: O(logN)
+ * space cost: O(N)
+ */
 public class SkipList {
 
     private static final int DEFAULT_MAX_LEVEL = 10;
     private static final double DEFAULT_FRACTION = 0.5;
-
-    private double fraction;
-
-    private Node head;
     private static final Random random = new Random(1);
 
-    private int height;
-    private int maxLevel;
+    private final double fraction;
+    private final int maxLevel;
 
-    public SkipList(int maxLevel,double fraction) {
+    private Node head;
+    private int height;
+
+    public SkipList(int maxLevel, double fraction) {
         head = new Node(-1, maxLevel);
         height = 1;
         this.fraction = fraction;
