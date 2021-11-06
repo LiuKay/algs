@@ -1,5 +1,7 @@
 package com.kay.ds;
 
+import com.kay.Assert;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -86,7 +88,7 @@ public class LRUCache {
         private int size;
 
         //head,tail 仅作为2个指针，head.next ==tail 时无数据
-        public DoubleList() {
+        DoubleList() {
             head = new Node(null, null);
             tail = new Node(null, null);
             head.next = tail;
@@ -94,7 +96,7 @@ public class LRUCache {
             size = 0;
         }
 
-        public void addLast(Node x) {
+        void addLast(Node x) {
             x.prev = tail.prev;
             x.next = tail;
             tail.prev.next = x;
@@ -102,13 +104,13 @@ public class LRUCache {
             size++;
         }
 
-        public void remove(Node x) {
+        void remove(Node x) {
             x.prev.next = x.next;
             x.next.prev = x.prev;
             size--;
         }
 
-        public Node removeFirst() {
+        Node removeFirst() {
             if (head.next == tail) {
                 return null;
             }
@@ -118,7 +120,7 @@ public class LRUCache {
             return first;
         }
 
-        public int size() {
+        int size() {
             return size;
         }
     }
@@ -133,6 +135,6 @@ public class LRUCache {
 
         cache.put("k3", "v3"); // removed k2
 
-        assert cache.get("k2") == null;
+        Assert.isNull(cache.get("k2"));
     }
 }

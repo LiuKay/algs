@@ -10,9 +10,9 @@ public class AncestorFinder {
     /**
      * @return the lowest common ancestor for p,q in root
      * @apiNote : post-order traverse
-     * <p>
-     * case 1. if p in root and q in root, return LCA case 2. if p not in root and q not in root, return null case 3. if
-     * only p in root or only q in root, return p or q (important)
+     * case 1. if p in root and q in root, return LCA.
+     * case 2. if p not in root and q not in root, return null.
+     * case 3. if only p in root or only q in root, return p or q (important).
      */
     static TreeNode findLowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) {

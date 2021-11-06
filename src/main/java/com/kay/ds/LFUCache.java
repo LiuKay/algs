@@ -1,5 +1,7 @@
 package com.kay.ds;
 
+import com.kay.Assert;
+
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -113,7 +115,7 @@ public class LFUCache {
         //remove k2
         lfuCache.put("k3", "v3");
 
-        assert lfuCache.get("k2") == null;
-        assert lfuCache.fkMap.size() == 2;
+        Assert.isNull(lfuCache.get("k2"));
+        Assert.isTrue(lfuCache.fkMap.size() == 2);
     }
 }

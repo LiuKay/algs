@@ -1,5 +1,6 @@
 package com.kay.ds;
 
+import com.kay.Assert;
 import com.kay.TreeNode;
 import com.kay.Utils;
 
@@ -21,7 +22,7 @@ public class BST {
 
         final TreeNode node = remove(root, nums[0]);
 
-        assert isValidBST(node);
+        Assert.isTrue(isValidBST(node));
     }
 
     public static TreeNode numsToBST(int[] nums) {

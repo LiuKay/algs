@@ -1,5 +1,7 @@
 package com.kay.ds;
 
+import com.kay.Assert;
+
 import java.util.Random;
 
 /**
@@ -64,17 +66,12 @@ public class SkipList {
     }
 
     Node find(int value){
-        int findCount = 0;
-
         Node p = head;
         for (int i = height - 1; i >= 0; i--) {
-            findCount++;
             while (p.forwards[i] != null && p.forwards[i].score < value) {
                 p = p.forwards[i];
             }
         }
-
-        System.out.println(String.format("search [%s] for times: %s", value, findCount));
 
         if (p.forwards[0] != null && p.forwards[0].score == value) {
             return p.forwards[0];
@@ -99,7 +96,7 @@ public class SkipList {
         cur = cur.forwards[0];
 
         if (cur == null || cur.score != value) {
-            throw new RuntimeException("Not found target value :" + value);
+            throw new IllegalArgumentException("Not found target value :" + value);
         }
 
         //from bottom to top, replace the pointers until no pointer to the target in the level i.
@@ -143,7 +140,7 @@ public class SkipList {
                 node = node.forwards[i];
             }
 
-            System.out.println(String.format("level:%s : %s", i+1, stringBuilder.toString()));
+            System.out.println(String.format("level:%s : %s", i + 1, stringBuilder));
         }
     }
 
@@ -183,7 +180,7 @@ public class SkipList {
          */
 
         final Node node = skipList.find(7);// search 4 times
-        assert node.score == 7;
+        Assert.isTrue(node.score == 7);
 
 //        skipList.delete(11); // Not found target value :11
 
@@ -194,6 +191,6 @@ public class SkipList {
         skipList.printList();
 
         //removed 6,8, then the level has decreased
-        assert skipList.height == 3;
+        Assert.isTrue(skipList.height == 3);
     }
 }

@@ -1,15 +1,23 @@
 package com.kay.ds;
 
+import com.kay.Assert;
+
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class LRUByLinkedHashMap {
 
-    private LinkedHashMap<String, String> cache;
-    private int cap;
+    private final LinkedHashMap<String, String> cache;
+    private final int maxCap;
 
     public LRUByLinkedHashMap(int cap) {
-        this.cap = cap;
-        this.cache = new LinkedHashMap<>();
+        this.maxCap = cap;
+        this.cache = new LinkedHashMap<String, String>() {
+            @Override
+            protected boolean removeEldestEntry(Map.Entry eldest) {
+                return size() > maxCap;
+            }
+        };
     }
 
     public String get(String key) {
@@ -20,24 +28,20 @@ public class LRUByLinkedHashMap {
         return this.cache.get(key);
     }
 
-    private void makeRecently(String key) {
-        String remove = this.cache.remove(key);
-        this.cache.put(key, remove);
-    }
-
     public void put(String key, String value) {
-        if (cache.containsKey(key)) {
-            cache.put(key, value);
+        if (this.cache.containsKey(key)) {
+            //insertion for existing key in LinkedHashKey will not affect the order
+            this.cache.put(key, value);
             makeRecently(key);
             return;
         }
 
-        if (cache.size() >= this.cap) {
-            String oldestKey = cache.keySet().iterator().next();
-            cache.remove(oldestKey);
-        }
+        this.cache.put(key, value);
+    }
 
-        cache.put(key, value);
+    private void makeRecently(String key) {
+        String remove = this.cache.remove(key);
+        this.cache.put(key, remove);
     }
 
     public static void main(String[] args) {
@@ -45,10 +49,10 @@ public class LRUByLinkedHashMap {
         cache.put("k1", "v1");
         cache.put("k2", "v2");
 
-        cache.get("k1");
+        cache.put("k1", "k111"); // this put will move k1 to be the latest one
 
         cache.put("k3", "v3");
 
-        assert cache.get("k2") == null;
+        Assert.isNull(cache.get("k2"));
     }
 }
