@@ -29,7 +29,7 @@ package com.kay.leetcode.arrary;
  */
 public class ContainerWithMostWater {
 
-    class Solution {
+    static class Solution {
 
         //1. 暴力解法
         public int maxArea(int[] height) {

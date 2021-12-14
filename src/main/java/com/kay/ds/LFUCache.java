@@ -110,7 +110,7 @@ public class LFUCache {
         lfuCache.put("k2", "v2");
 
         String k1 = lfuCache.get("k1");
-        assert k1.equals("v1");
+        Assert.isTrue(k1.equals("v1"));
 
         //remove k2
         lfuCache.put("k3", "v3");

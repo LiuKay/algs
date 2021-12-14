@@ -1,5 +1,6 @@
 package com.kay.tree;
 
+import com.kay.Assert;
 import com.kay.TreeNode;
 import com.kay.ds.BST;
 
@@ -21,18 +22,18 @@ public class TreeSerializer {
         //pre-order
         final String preString = PreOrderSerializer.serialize(treeNode);
         final TreeNode preTree = PreOrderSerializer.deserialize(preString);
-        assert isSame(treeNode, preTree);
+        Assert.isTrue(isSame(treeNode, preTree));
 
         //post-order
         final String postString = PostOrderSerializer.serialize(treeNode);
         final TreeNode postTree = PostOrderSerializer.deserialize(postString);
-        assert isSame(treeNode, postTree);
-        assert isSame(preTree, postTree);
+        Assert.isTrue(isSame(treeNode, postTree));
+        Assert.isTrue(isSame(preTree, postTree));
 
         //bread first
         final String serialize = BreadFirstSerializer.serialize(treeNode);
         final TreeNode deserialize = BreadFirstSerializer.deserialize(serialize);
-        assert isSame(treeNode, deserialize);
+        Assert.isTrue(isSame(treeNode, deserialize));
     }
 
     static class PreOrderSerializer {

@@ -1,5 +1,6 @@
 package com.kay.tree;
 
+import com.kay.Assert;
 import com.kay.TreeNode;
 
 import java.util.Objects;
@@ -46,8 +47,8 @@ public class AncestorFinder {
 
         TreeNode commonAncestor = findLowestCommonAncestor(node, new TreeNode(315), new TreeNode(486));
 
-        assert Objects.nonNull(commonAncestor);
-        assert commonAncestor.val == 457;
+        Assert.isTrue(Objects.nonNull(commonAncestor));
+        Assert.isTrue(commonAncestor.val == 457);
     }
 
 }

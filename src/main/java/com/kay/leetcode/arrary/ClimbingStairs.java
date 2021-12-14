@@ -8,6 +8,8 @@
 
 package com.kay.leetcode.arrary;
 
+import com.kay.Assert;
+
 /**
  * Created on 2020/5/22
  *
@@ -16,9 +18,15 @@ package com.kay.leetcode.arrary;
 public class ClimbingStairs {
 
 
-    class Solution {
+    public static void main(String[] args) {
+        final int stairs = Solution.climbStairs(50);
+        final int recursively = Solution.climbStairsRecursively(50);
+        Assert.isTrue(stairs == recursively);
+    }
 
-        public int climbStairs(int n) {
+    static class Solution {
+
+        public static int climbStairs(int n) {
             if (n == 1) {
                 return 1;
             }
@@ -33,6 +41,16 @@ public class ClimbingStairs {
                 f2 = f3;
             }
             return f2;
+        }
+
+        public static int climbStairsRecursively(int n) {
+            if (n == 1) {
+                return 1;
+            }
+            if (n == 2) {
+                return 2;
+            }
+            return climbStairsRecursively(n - 2) + climbStairsRecursively(n - 1);
         }
     }
 }

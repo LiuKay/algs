@@ -14,11 +14,9 @@ public class BST {
             root = insertBST(root, num);
         }
 
-        assert isValidBST(root);
+        Assert.isTrue(isValidBST(root));
 
-       Utils.preOrderPrint(root);
-
-//        Utils.printArray(nums);
+        Utils.preOrderPrint(root); //debug info
 
         final TreeNode node = remove(root, nums[0]);
 
@@ -36,6 +34,22 @@ public class BST {
     //left <= root <= right
     public static boolean isValidBST(TreeNode root) {
         return isValidBST(root, null, null);
+    }
+
+    public TreeNode search(TreeNode root, int value) {
+        if (root == null) {
+            return null;
+        }
+
+        if (root.val == value) {
+            return root;
+        }
+
+        if (root.val < value) {
+            return search(root.right, value);
+        }else {
+            return search(root.left, value);
+        }
     }
 
     private static boolean isValidBST(TreeNode root, TreeNode min, TreeNode max) {
@@ -79,6 +93,7 @@ public class BST {
                 return root.left;
             }
 
+            //if the target node has children, move the minimum node of right child up to the current position
             TreeNode min = getMin(root.right);
             root.val = min.val;
             root.right = remove(root.right, min.val);
