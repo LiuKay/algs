@@ -43,7 +43,7 @@ public class AncestorFinder {
 
     public static void main(String[] args) {
         String content = "674,546,741,457,#,#,836,153,486,#,#,19,195,#,#,#,#,#,315,#,#,";
-        TreeNode node = TreeSerializer.BreadFirstSerializer.deserialize(content);
+        TreeNode node = BinaryTreeSerializers.BREAD_FIRST_ORDER.deserialize(content);
 
         TreeNode commonAncestor = findLowestCommonAncestor(node, new TreeNode(315), new TreeNode(486));
 
