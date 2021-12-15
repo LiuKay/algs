@@ -21,12 +21,6 @@ public class BinaryTreeSerializers {
 
     private BinaryTreeSerializers() {}
 
-    interface BinaryTreeSerializer{
-        String serialize(TreeNode treeNode);
-
-        TreeNode deserialize(String content);
-    }
-
     static class PreOrderSerializer implements BinaryTreeSerializer {
 
         @Override
