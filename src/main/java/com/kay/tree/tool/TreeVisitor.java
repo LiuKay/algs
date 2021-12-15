@@ -1,4 +1,4 @@
-package com.kay.tree;
+package com.kay.tree.tool;
 
 import com.kay.TreeNode;
 

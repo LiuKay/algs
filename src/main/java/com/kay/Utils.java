@@ -1,6 +1,6 @@
 package com.kay;
 
-import com.kay.tree.TreeVisitor;
+import com.kay.tree.tool.TreeVisitor;
 
 import java.util.Random;
 

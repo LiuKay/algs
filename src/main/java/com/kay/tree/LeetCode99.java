@@ -1,10 +1,9 @@
-package com.kay.tree.bst;
+package com.kay.tree;
 
 import com.kay.Assert;
 import com.kay.TreeNode;
-import com.kay.Utils;
 import com.kay.ds.BST;
-import com.kay.tree.BinaryTreeSerializers;
+import com.kay.tree.tool.BinaryTreeSerializers;
 
 /**
  * <a>https://leetcode.com/problems/recover-binary-search-tree/</a>

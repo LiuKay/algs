@@ -1,4 +1,4 @@
-package com.kay.tree;
+package com.kay.tree.tool;
 
 import com.kay.Assert;
 import com.kay.TreeNode;
@@ -10,6 +10,9 @@ import java.util.Queue;
 
 import static com.kay.Utils.isSame;
 
+/**
+ * The string result is Perfect Binary Tree.
+ */
 public class BinaryTreeSerializers {
 
     public static final String SEP = ",";
