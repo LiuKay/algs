@@ -47,12 +47,48 @@ public class LeetCode300 {
 
             return res;
         }
+
+
+        //patience game
+        public int lengthOfLISByBinarySearch(int[] nums){
+            int[] tops = new int[nums.length]; // the tops is sorted.
+
+            int piles = 0;
+            for (int i = 0; i < nums.length; i++) {
+                int target = nums[i];
+
+                int left = 0;
+                int right = piles;
+                while (left < right) {
+                    int mid = left + (right - left) / 2;
+                    if (tops[mid] == target) {
+                        right = mid;
+                    } else if (tops[mid] > target) {
+                        right = mid;
+                    } else if (tops[mid] < target) {
+                        left = mid + 1;
+                    }
+                }
+
+                //no pile can put on, add a new pile
+                if (left == piles) {
+                    piles++;
+                }
+
+                //put the target on the top
+                tops[left] = target;
+            }
+            return piles;
+        }
     }
 
     public static void main(String[] args) {
         int[] nums = {10,9,2,5,3,7,101,18};
-        final int length = new Solution().lengthOfLIS(nums);
+        final Solution solution = new Solution();
+        final int length = solution.lengthOfLIS(nums);
 
         Assert.isTrue(length == 4);
+
+        Assert.isEquals(4, solution.lengthOfLISByBinarySearch(nums));
     }
 }

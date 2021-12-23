@@ -1,5 +1,7 @@
 package com.kay;
 
+import java.util.Objects;
+
 public final class Assert {
     private Assert() {
         //no-op
@@ -8,6 +10,12 @@ public final class Assert {
     public static void isTrue(boolean expression) {
         if (!expression) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    public static void isEquals(Object actual, Object target) {
+        if (!Objects.equals(actual, target)) {
+            throw new IllegalArgumentException(String.format("%s is not equal to %s", actual, target));
         }
     }
 
