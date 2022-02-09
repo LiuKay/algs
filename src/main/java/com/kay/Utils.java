@@ -3,6 +3,7 @@ package com.kay;
 import com.kay.tree.tool.TreeVisitor;
 
 import java.util.Random;
+import java.util.StringJoiner;
 
 public final class Utils {
 
@@ -29,22 +30,20 @@ public final class Utils {
     }
 
     public static void printList(ListNode head) {
-        System.out.print("[");
+        StringJoiner joiner = new StringJoiner(",", "[", "]");
         while (head != null) {
-            System.out.print(head.val);
+            joiner.add(String.valueOf(head.val));
             head = head.next;
-            if (head != null) {
-                System.out.print(",");
-            }
         }
-        System.out.print("]");
+        System.out.println(joiner);
     }
 
     public static void printArray(int[] arr){
+        StringJoiner joiner = new StringJoiner(",", "[", "]");
         for (int i : arr) {
-            System.out.print(i + ",");
+            joiner.add(String.valueOf(i));
         }
-        System.out.println();
+        System.out.println(joiner);
     }
 
     public static void swap(int[] nums, int from, int to) {
