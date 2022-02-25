@@ -1,4 +1,4 @@
-package com.kay.leetcode;
+package com.kay.slidingwindow;
 
 import com.kay.Assert;
 
