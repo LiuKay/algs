@@ -35,7 +35,7 @@ public final class Utils {
             joiner.add(String.valueOf(head.val));
             head = head.next;
         }
-        System.out.println(joiner);
+        System.err.println(joiner);
     }
 
     public static void printArray(int[] arr){
@@ -43,7 +43,7 @@ public final class Utils {
         for (int i : arr) {
             joiner.add(String.valueOf(i));
         }
-        System.out.println(joiner);
+        System.err.println(joiner);
     }
 
     public static void swap(int[] nums, int from, int to) {
