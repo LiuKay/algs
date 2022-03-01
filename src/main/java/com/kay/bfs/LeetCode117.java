@@ -2,30 +2,36 @@ package com.kay.bfs;
 
 public class LeetCode117 {
 
+    /**
+     * the idea is same as using Queue in BFS, level-order traversal
+     */
     static class Solution {
         public Node connect(Node root) {
-            Node head = root;
-            Node temp = new Node(0);
+            if (root == null) {
+                return null;
+            }
 
-            while (head != null) {
-                Node cur = head;
-                Node child = temp;
+            Node cur = root; // current level
+            while (cur != null) {
+
+                Node dummy = new Node(0); // used to link next level list
+                Node prev = dummy;
+
                 while (cur != null) {
                     if (cur.left != null) {
-                        child.next = cur.left;
-                        child = cur.left;
+                        prev.next = cur.left;
+                        prev = prev.next;
                     }
 
                     if (cur.right != null) {
-                        child.next = cur.right;
-                        child = child.right;
+                        prev.next = cur.right;
+                        prev = prev.next;
                     }
                     cur = cur.next;
                 }
-                head = temp.next;
-                temp.next = null;
-            }
 
+                cur = dummy.next; //move to next level
+            }
             return root;
         }
     }
