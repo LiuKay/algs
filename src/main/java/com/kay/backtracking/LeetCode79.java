@@ -47,6 +47,10 @@ public class LeetCode79 {
                 return false;
             }
 
+            if (visited[row][col]) {
+                return false;
+            }
+
             visited[row][col] = true;
             if (backtrack(board, word, row + 1, col, index + 1) ||
                     backtrack(board, word, row - 1, col, index + 1) ||
