@@ -7,7 +7,7 @@ public class LeetCode79 {
     //[["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
     //"ABCCED"
     public static void main(String[] args) {
-        char[][] board = {{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
+        char[][] board = {{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'}};
         final boolean result = new Solution().exist(board, "ABCCED");
 
         Assert.isTrue(result);
@@ -15,7 +15,8 @@ public class LeetCode79 {
 
     static class Solution {
 
-        static boolean [][] visited;
+        static boolean[][] visited;
+        static int[][] directions = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
         public boolean exist(char[][] board, String word) {
             if (word == null || word.length() == 0) {
@@ -26,8 +27,12 @@ public class LeetCode79 {
             char first = word.charAt(0);
             for (int i = 0; i < board.length; i++) {
                 for (int j = 0; j < board[i].length; j++) {
-                    if (board[i][j] == first && backtrack(board, word, i, j, 0)) {
-                        return true;
+                    if (board[i][j] == first) {
+                        visited[i][j] = true;
+                        if (backtrack(board, word, i, j, 1)) {
+                            return true;
+                        }
+                        visited[i][j] = false;
                     }
                 }
             }
@@ -38,28 +43,33 @@ public class LeetCode79 {
             if (index == word.length()) {
                 return true;
             }
+            for (int[] direction : directions) {
+                int x = row + direction[0];
+                int y = col + direction[1];
+                if (!isValid(board, word, index, x, y)) {
+                    continue;
+                }
 
-            if (row < 0 || row >= board.length || col < 0 || col >= board[row].length) {
-                return false;
+                visited[x][y] = true;
+                if (backtrack(board, word, x, y, index + 1)) {
+                    return true;
+                }
+                visited[x][y] = false;
             }
-
-            if (board[row][col] != word.charAt(index)) {
-                return false;
-            }
-
-            if (visited[row][col]) {
-                return false;
-            }
-
-            visited[row][col] = true;
-            if (backtrack(board, word, row + 1, col, index + 1) ||
-                    backtrack(board, word, row - 1, col, index + 1) ||
-                    backtrack(board, word, row, col + 1, index + 1) ||
-                    backtrack(board, word, row, col - 1, index + 1)) {
-                return true;
-            }
-            visited[row][col] = false;
             return false;
+        }
+
+        boolean isValid(char[][] board, String word, int index, int x, int y) {
+            if (x < 0 || x >= board.length || y < 0 || y >= board[x].length) {
+                return false;
+            }
+            if (board[x][y] != word.charAt(index)) {
+                return false;
+            }
+            if (visited[x][y]) {
+                return false;
+            }
+            return true;
         }
     }
 }
